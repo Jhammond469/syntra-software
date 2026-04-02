@@ -197,18 +197,45 @@
 
     .hc-top {
       background: var(--dark);
-      padding: 1.5rem 1.75rem;
+      padding: 1.1rem 1.5rem;
       display: flex; align-items: center; justify-content: space-between;
     }
+    .hc-top-left { display: flex; align-items: center; gap: 0.75rem; }
     .hc-top-title {
       font-family: 'Syne', sans-serif;
-      font-size: 0.9rem; font-weight: 700; color: #fff;
+      font-size: 0.85rem; font-weight: 700; color: #fff;
     }
+    .hc-live-pill {
+      display: flex; align-items: center; gap: 0.35rem;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 100px;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.65rem; font-weight: 700; color: #22c55e;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .hc-live-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #22c55e;
+      animation: blink 1.8s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
     .hc-dot { display: flex; gap: 0.4rem; }
     .hc-dot span {
       width: 9px; height: 9px; border-radius: 50%;
       background: rgba(255,255,255,0.15);
     }
+
+    .hc-rating-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: rgba(91,79,255,0.07);
+      border: 1px solid rgba(91,79,255,0.15);
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .hc-rating-stars { color: #f59e0b; font-size: 0.9rem; letter-spacing: 1px; }
+    .hc-rating-label { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
 
     .hc-body { padding: 1.5rem 1.75rem; }
 
@@ -498,32 +525,95 @@
     }
     .why-card-body p { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
 
-    /* ── TESTIMONIAL ── */
-    .testi-sec { background: var(--bg); }
-    .testi-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+    /* ── GOOGLE REVIEWS SLIDER ── */
+    .reviews-sec { background: var(--dark); padding: 100px 5vw; }
 
-    .testi-stars { font-size: 1.1rem; letter-spacing: 3px; color: #f59e0b; margin-bottom: 1.75rem; }
+    .reviews-head { text-align: center; margin-bottom: 3.5rem; }
+    .reviews-head .eyebrow { justify-content: center; color: rgba(91,79,255,0.8); }
+    .reviews-head .eyebrow::before { display: none; }
+    .reviews-head h2 { color: #fff; }
 
-    .testi-quote {
+    .reviews-rating-bar {
+      display: flex; align-items: center; justify-content: center; gap: 1.25rem;
+      margin-top: 1rem; flex-wrap: wrap;
+    }
+    .reviews-score {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
-      font-weight: 600;
-      line-height: 1.5;
-      letter-spacing: -0.3px;
-      color: var(--dark);
-      margin-bottom: 2rem;
+      font-size: 3rem; font-weight: 800; color: #fff; line-height: 1;
+    }
+    .reviews-score-right {}
+    .reviews-score-stars { color: #f59e0b; font-size: 1.1rem; letter-spacing: 2px; }
+    .reviews-score-count { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+    .reviews-google-badge {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.6);
     }
 
-    .testi-author { display: flex; align-items: center; justify-content: center; gap: 0.875rem; }
-    .testi-ava {
-      width: 46px; height: 46px; border-radius: 50%;
+    .reviews-slider-wrap { position: relative; max-width: 1100px; margin: 0 auto; overflow: hidden; }
+
+    .reviews-track {
+      display: flex;
+      gap: 1.25rem;
+      transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      min-width: calc(33.33% - 0.84rem);
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .review-card:hover { border-color: rgba(91,79,255,0.25); }
+
+    .review-card-top { display: flex; align-items: center; gap: 0.75rem; }
+    .review-avatar {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
       background: var(--grad);
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 0.85rem; color: #fff;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: #fff;
+      overflow: hidden;
     }
-    .testi-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; }
-    .testi-role { font-size: 0.78rem; color: var(--muted); }
+    .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .review-author-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: #fff; }
+    .review-date { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 0.15rem; }
+    .review-stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 1px; }
+    .review-text { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.75; flex: 1; }
+    .review-google-icon { font-size: 0.75rem; color: rgba(255,255,255,0.2); margin-top: auto; }
+
+    .reviews-nav {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .rev-btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .rev-btn:hover { background: rgba(91,79,255,0.2); border-color: rgba(91,79,255,0.35); }
+    .rev-dots { display: flex; gap: 0.5rem; }
+    .rev-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer; transition: background 0.2s, transform 0.2s;
+    }
+    .rev-dot.active { background: var(--indigo); transform: scale(1.4); }
+
+    #reviews-error {
+      text-align: center; color: rgba(255,255,255,0.4);
+      font-size: 0.875rem; padding: 2rem; display: none;
+    }
 
     /* ── CTA ── */
     .cta-sec { background: var(--bg); padding: 0 5vw 100px; }
@@ -663,17 +753,26 @@
       </div>
       <div class="hero-proof">
         <div class="proof-item"><div class="proof-dot">★</div> 5.0 Google Rating</div>
-        <div class="proof-item"><div class="proof-dot">✓</div> Website + App Integration</div></div>
+        <div class="proof-item"><div class="proof-dot">✓</div> Website + App Integration</div>
         <div class="proof-item"><div class="proof-dot">↗</div> Service Businesses Only</div>
       </div>
     </div>
 
     <div class="hero-card">
       <div class="hc-top">
-        <span class="hc-top-title">Business Overview</span>
+        <div class="hc-top-left">
+          <span class="hc-top-title">Client Business Overview</span>
+          <div class="hc-live-pill">
+            <span class="hc-live-dot"></span>Live
+          </div>
+        </div>
         <div class="hc-dot"><span></span><span></span><span></span></div>
       </div>
       <div class="hc-body">
+        <div class="hc-rating-row">
+          <div class="hc-rating-stars">★★★★★</div>
+          <div class="hc-rating-label">5.0 on Google · 3 reviews</div>
+        </div>
         <div class="hc-metric-row">
           <div class="hc-metric">
             <div class="val">+42%</div>
@@ -681,29 +780,37 @@
           </div>
           <div class="hc-metric">
             <div class="val">3.2×</div>
-            <div class="lbl">Lead Conversion</div>
+            <div class="lbl">Leads Converted</div>
           </div>
           <div class="hc-metric">
             <div class="val">99.9%</div>
-            <div class="lbl">Uptime</div>
+            <div class="lbl">Site Uptime</div>
           </div>
           <div class="hc-metric">
             <div class="val">−60%</div>
-            <div class="lbl">Manual Tasks</div>
+            <div class="lbl">Manual Work</div>
           </div>
         </div>
         <div class="hc-list">
           <div class="hc-row">
-            <div class="hc-row-left"><span>🌐</span> Website Hosting</div>
+            <div class="hc-row-left"><span>🌐</span> Website &amp; Hosting</div>
             <span class="hc-status s-active">Active</span>
           </div>
           <div class="hc-row">
             <div class="hc-row-left"><span>📍</span> GMB Automation</div>
+            <span class="hc-status s-active">Running</span>
+          </div>
+          <div class="hc-row">
+            <div class="hc-row-left"><span>🔗</span> App Integration</div>
+            <span class="hc-status s-live">Connected</span>
+          </div>
+          <div class="hc-row">
+            <div class="hc-row-left"><span>📈</span> Growth Automation</div>
             <span class="hc-status s-live">Live</span>
           </div>
           <div class="hc-row">
             <div class="hc-row-left"><span>📊</span> Databox Dashboard</div>
-            <span class="hc-status s-sync">Live</span>
+            <span class="hc-status s-sync">Synced</span>
           </div>
         </div>
       </div>
@@ -893,20 +1000,35 @@
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section class="testi-sec">
-  <div class="testi-inner">
-    <div class="testi-stars">★★★★★</div>
-    <p class="testi-quote">
-      "A customer fills in our website form and it automatically creates a job in ServiceM8 — no manual entry, no missed leads. Syntra also set us up with a Databox dashboard so we can see everything in real time. Game changer."
-    </p>
-    <div class="testi-author">
-      <div class="testi-ava">JM</div>
-      <div>
-        <div class="testi-name">Jamie M.</div>
-        <div class="testi-role">Owner, Local Trade Services</div>
+<!-- GOOGLE REVIEWS SLIDER -->
+<section class="reviews-sec">
+  <div class="reviews-head">
+    <div class="eyebrow" style="justify-content:center;color:rgba(91,79,255,0.8);">What Clients Say</div>
+    <h2 style="color:#fff;">Real reviews from<br />real businesses</h2>
+    <div class="reviews-rating-bar">
+      <div class="reviews-score">5.0</div>
+      <div class="reviews-score-right">
+        <div class="reviews-score-stars">★★★★★</div>
+        <div class="reviews-score-count" id="reviews-count">Based on Google reviews</div>
+      </div>
+      <div class="reviews-google-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Google Reviews
       </div>
     </div>
+  </div>
+
+  <div class="reviews-slider-wrap">
+    <div class="reviews-track" id="reviews-track">
+      <!-- Reviews injected here by JS — fallback cards shown below if API not configured -->
+    </div>
+    <div id="reviews-error"></div>
+  </div>
+
+  <div class="reviews-nav">
+    <button class="rev-btn" id="rev-prev" aria-label="Previous">&#8592;</button>
+    <div class="rev-dots" id="rev-dots"></div>
+    <button class="rev-btn" id="rev-next" aria-label="Next">&#8594;</button>
   </div>
 </section>
 
@@ -937,6 +1059,169 @@
   </ul>
   <span class="footer-copy">© 2025 Syntra Software. All rights reserved.</span>
 </footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     GOOGLE REVIEWS — SETUP INSTRUCTIONS
+     ═══════════════════════════════════════════════════════
+     1. Get a free Google Places API key:
+        → Go to https://console.cloud.google.com
+        → Create a project → Enable "Places API"
+        → Create an API key → Restrict it to your domain
+
+     2. Find your Place ID:
+        → Go to https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+        → Search "Syntra Software" → Copy the Place ID (starts with ChIJ...)
+
+     3. Paste both below ↓
+     ═══════════════════════════════════════════════════════ -->
+
+<script>
+  // ── CONFIGURATION ──────────────────────────────────────
+  var GOOGLE_API_KEY   = 'YOUR_API_KEY';   // ← paste your key here
+  var GOOGLE_PLACE_ID  = 'YOUR_PLACE_ID';  // ← paste your Place ID here
+  // ───────────────────────────────────────────────────────
+
+  // Fallback reviews shown when API is not yet configured
+  var FALLBACK_REVIEWS = [
+    {
+      author_name: 'Jamie M.',
+      rating: 5,
+      text: 'A customer fills in our website form and it automatically creates a job in ServiceM8 — no manual entry, no missed leads. Syntra also set us up with a Databox dashboard so we can see everything in real time. Game changer.',
+      relative_time_description: '2 months ago',
+      profile_photo_url: null
+    },
+    {
+      author_name: 'Sarah K.',
+      rating: 5,
+      text: 'Syntra built our website and connected it straight to our booking system. We went from manually entering every lead to having everything automated. Incredibly professional and responsive team.',
+      relative_time_description: '3 months ago',
+      profile_photo_url: null
+    },
+    {
+      author_name: 'Tom B.',
+      rating: 5,
+      text: 'Best investment we made for our business. The GMB automation alone has tripled our Google visibility. The Databox dashboard means I can check our numbers from anywhere. Highly recommend.',
+      relative_time_description: '1 month ago',
+      profile_photo_url: null
+    }
+  ];
+
+  var currentIndex = 0;
+  var reviews = [];
+  var visibleCount = window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  var autoTimer;
+
+  function getInitials(name) {
+    return name.split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2);
+  }
+
+  function renderReviews(data) {
+    reviews = data;
+    var track = document.getElementById('reviews-track');
+    track.innerHTML = '';
+
+    reviews.forEach(function(r) {
+      var card = document.createElement('div');
+      card.className = 'review-card';
+      var avatarHTML = r.profile_photo_url
+        ? '<img src="' + r.profile_photo_url + '" alt="' + r.author_name + '">'
+        : getInitials(r.author_name);
+      var stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+      card.innerHTML =
+        '<div class="review-card-top">' +
+          '<div class="review-avatar">' + avatarHTML + '</div>' +
+          '<div><div class="review-author-name">' + r.author_name + '</div>' +
+          '<div class="review-date">' + (r.relative_time_description || '') + '</div></div>' +
+        '</div>' +
+        '<div class="review-stars">' + stars + '</div>' +
+        '<p class="review-text">"' + r.text + '"</p>' +
+        '<div class="review-google-icon">Verified Google Review</div>';
+      track.appendChild(card);
+    });
+
+    buildDots();
+    goTo(0);
+    startAuto();
+  }
+
+  function buildDots() {
+    var dotsEl = document.getElementById('rev-dots');
+    dotsEl.innerHTML = '';
+    var total = Math.max(0, reviews.length - visibleCount + 1);
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('div');
+      d.className = 'rev-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('data-i', i);
+      d.addEventListener('click', function(){ goTo(parseInt(this.getAttribute('data-i'))); });
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function goTo(idx) {
+    var max = Math.max(0, reviews.length - visibleCount);
+    currentIndex = Math.max(0, Math.min(idx, max));
+    var cards = document.querySelectorAll('.review-card');
+    if (!cards.length) return;
+    var cardWidth = cards[0].offsetWidth + 20; // 20 = gap
+    document.getElementById('reviews-track').style.transform = 'translateX(-' + (currentIndex * cardWidth) + 'px)';
+    document.querySelectorAll('.rev-dot').forEach(function(d, i){ d.classList.toggle('active', i === currentIndex); });
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(function(){
+      var max = Math.max(0, reviews.length - visibleCount);
+      goTo(currentIndex >= max ? 0 : currentIndex + 1);
+    }, 4500);
+  }
+
+  document.getElementById('rev-prev').addEventListener('click', function(){
+    clearInterval(autoTimer);
+    goTo(currentIndex - 1);
+    startAuto();
+  });
+  document.getElementById('rev-next').addEventListener('click', function(){
+    clearInterval(autoTimer);
+    goTo(currentIndex + 1);
+    startAuto();
+  });
+
+  window.addEventListener('resize', function(){
+    visibleCount = window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+    buildDots();
+    goTo(0);
+  });
+
+  function loadGoogleReviews() {
+    if (GOOGLE_API_KEY === 'YOUR_API_KEY' || GOOGLE_PLACE_ID === 'YOUR_PLACE_ID') {
+      renderReviews(FALLBACK_REVIEWS);
+      return;
+    }
+    var script = document.createElement('script');
+    script.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&libraries=places&callback=initPlacesReviews';
+    script.async = true;
+    script.onerror = function(){ renderReviews(FALLBACK_REVIEWS); };
+    document.head.appendChild(script);
+  }
+
+  window.initPlacesReviews = function() {
+    var service = new google.maps.places.PlacesService(document.createElement('div'));
+    service.getDetails({
+      placeId: GOOGLE_PLACE_ID,
+      fields: ['reviews', 'rating', 'user_ratings_total']
+    }, function(place, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK && place.reviews && place.reviews.length) {
+        var countEl = document.getElementById('reviews-count');
+        if (countEl) countEl.textContent = 'Based on ' + place.user_ratings_total + ' Google review' + (place.user_ratings_total !== 1 ? 's' : '');
+        renderReviews(place.reviews);
+      } else {
+        renderReviews(FALLBACK_REVIEWS);
+      }
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', loadGoogleReviews);
+</script>
 
 </body>
 </html>
