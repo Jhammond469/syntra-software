@@ -110,11 +110,12 @@
     }
 
     .hero-content {
-      position: relative;
+      position: absolute;
+      bottom: 7rem;
+      left: 5vw;
       z-index: 2;
-      text-align: center;
-      padding: 2rem 5vw;
-      max-width: 860px;
+      text-align: left;
+      max-width: 680px;
       animation: heroFadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
@@ -196,14 +197,14 @@
 
     .hero-content .hero-p {
       color: rgba(255,255,255,0.75);
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 520px;
+      margin-left: 0;
+      margin-right: 0;
       font-size: 1.1rem;
     }
 
     .hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
-    .hero-content .hero-btns { justify-content: center; }
+    .hero-content .hero-btns { justify-content: flex-start; }
 
     .btn-dark {
       background: var(--dark);
@@ -249,7 +250,7 @@
       margin-top: 2.5rem;
       display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
     }
-    .hero-content .hero-proof { justify-content: center; }
+    .hero-content .hero-proof { justify-content: flex-start; }
     .proof-item {
       display: flex; align-items: center; gap: 0.4rem;
       font-size: 0.82rem; font-weight: 500; color: var(--muted);
@@ -836,19 +837,12 @@
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Smart Business Growth Platform</div>
-    <h1>Automate.<br /><span class="grad-text">Integrate.</span><br />Grow.</h1>
-    <p class="hero-p">
-      Syntra Software helps service-based businesses grow through smart websites, Google My Business automation, and seamless service app integrations — all in one place.
-    </p>
+    <div class="hero-eyebrow">AI-Powered Business Systems</div>
+    <h1>Breathtaking AI Websites<br />with <span class="grad-text">Real-Time Insights</span><br />and Seamless Integration.</h1>
+    <p class="hero-p">Your website becomes the front-end of a fully connected backend.</p>
     <div class="hero-btns">
-      <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-dark">Book a Free Consultation →</a>
-      <a href="#services" class="btn-outline">See What We Do</a>
-    </div>
-    <div class="hero-proof">
-      <div class="proof-item"><div class="proof-dot">★</div> 5.0 Google Rating</div>
-      <div class="proof-item"><div class="proof-dot">✓</div> Website + App Integration</div>
-      <div class="proof-item"><div class="proof-dot">↗</div> Service Businesses Only</div>
+      <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-dark">Book a Demo →</a>
+      <a href="#services" class="btn-outline">See How It Works</a>
     </div>
   </div>
   <div class="hero-scroll-hint">
@@ -860,23 +854,23 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-inner">
-    <span class="ticker-item">Website Hosting</span>
-    <span class="ticker-item">GMB Automation</span>
-    <span class="ticker-item">Databox Dashboards</span>
-    <span class="ticker-item">Lead Capture</span>
-    <span class="ticker-item">Service App Integration</span>
-    <span class="ticker-item">CRM Integration</span>
-    <span class="ticker-item">Growth Automation</span>
-    <span class="ticker-item">Ongoing Support</span>
+    <span class="ticker-item">AI Website</span>
+    <span class="ticker-item">System Integration</span>
+    <span class="ticker-item">Live Dashboard</span>
+    <span class="ticker-item">Automation</span>
+    <span class="ticker-item">Real-Time Insights</span>
+    <span class="ticker-item">Connected Systems</span>
+    <span class="ticker-item">No Manual Work</span>
+    <span class="ticker-item">One View of Everything</span>
     <!-- duplicate for seamless loop -->
-    <span class="ticker-item">Website Hosting</span>
-    <span class="ticker-item">GMB Automation</span>
-    <span class="ticker-item">Databox Dashboards</span>
-    <span class="ticker-item">Lead Capture</span>
-    <span class="ticker-item">Service App Integration</span>
-    <span class="ticker-item">CRM Integration</span>
-    <span class="ticker-item">Growth Automation</span>
-    <span class="ticker-item">Ongoing Support</span>
+    <span class="ticker-item">AI Website</span>
+    <span class="ticker-item">System Integration</span>
+    <span class="ticker-item">Live Dashboard</span>
+    <span class="ticker-item">Automation</span>
+    <span class="ticker-item">Real-Time Insights</span>
+    <span class="ticker-item">Connected Systems</span>
+    <span class="ticker-item">No Manual Work</span>
+    <span class="ticker-item">One View of Everything</span>
   </div>
 </div>
 
@@ -885,41 +879,32 @@
   <div class="inner">
     <div class="services-head">
       <div class="eyebrow" style="color:rgba(91,79,255,0.7);">What We Do</div>
-      <h2>Everything you need to<br />grow — under one roof</h2>
-      <p class="sec-p">Built exclusively for service-based businesses. From lead capture to job creation to real-time performance tracking — we connect the dots so your business runs on autopilot.</p>
+      <h2>Breathtaking AI Websites with<br />Real-Time Insights and Seamless<br />System Integration</h2>
+      <p class="sec-p">Your website becomes the front-end of a fully connected backend.</p>
     </div>
     <div class="svc-grid">
       <div class="svc">
         <div class="svc-ico">🌐</div>
-        <h3>Smart Website Design &amp; Hosting</h3>
-        <p>Fast, modern websites built and hosted for service businesses. We handle the tech so you can focus on your clients.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ico">📍</div>
-        <h3>Google My Business Automation</h3>
-        <p>Reviews, posts, updates — all automated so your GMB profile works for you 24/7 without lifting a finger.</p>
-      </div>
-      <div class="svc">
-        <div class="svc-ico">📊</div>
-        <h3>Real-Time Business Dashboards</h3>
-        <p>See every metric that matters — jobs booked, revenue, leads, and team performance — in one live dashboard powered by Databox. 130+ integrations including your CRM, accounting software, and service apps. No spreadsheets, no guesswork.</p>
+        <h3>AI Website</h3>
+        <p>Designed to capture and route enquiries instantly. Built to connect directly into your systems.</p>
       </div>
       <div class="svc">
         <div class="svc-ico">🔗</div>
-        <h3>Service App Integration</h3>
-        <p>Connect your website to the tools you already use — booking apps, CRMs, job management software, and more. Everything talking to each other, automatically.</p>
+        <h3>System Integration</h3>
+        <p>Connects with your service app, CRM, and tools. Keeps all data synced across your workflow.</p>
       </div>
       <div class="svc">
-        <div class="svc-ico">📈</div>
-        <h3>Growth Automation</h3>
-        <p>A customer fills in your website form — that lead is instantly captured, a job is automatically created in your service app (Jobber, ServiceM8, and more), and a follow-up is triggered without anyone lifting a finger. Your pipeline runs itself.</p>
+        <div class="svc-ico">⚙️</div>
+        <h3>Automation</h3>
+        <p>Enquiry → job → follow-up handled automatically. Removes manual steps between actions.</p>
       </div>
       <div class="svc">
-        <div class="svc-ico">🛡️</div>
-        <h3>Ongoing Support</h3>
-        <p>We don't ghost you after launch. Continuous monitoring, improvements, and support keep your systems sharp.</p>
+        <div class="svc-ico">📊</div>
+        <h3>Live Dashboard</h3>
+        <p>Real-time view of leads, jobs, and activity. One place for all business data.</p>
       </div>
     </div>
+    <p style="text-align:center; color:rgba(255,255,255,0.5); font-size:0.9rem; font-weight:600; letter-spacing:1px; margin-top:3rem; text-transform:uppercase; letter-spacing:2px;">Everything connected. Nothing missed.</p>
   </div>
 </section>
 
@@ -929,35 +914,42 @@
     <div class="process-wrap">
       <div>
         <div class="eyebrow">How It Works</div>
-        <h2>From conversation<br />to results, fast.</h2>
-        <p class="sec-p">No jargon, no delays. A clear four-step path from your first call to a fully running system.</p>
+        <h2>From Disconnected Tools<br />to One System</h2>
+        <p class="sec-p">Simple setup. Seamless operation.</p>
         <div class="steps">
           <div class="step-item">
             <div class="step-n">01</div>
             <div class="step-content">
-              <h4>Discovery Call</h4>
-              <p>We learn your business, your pain points, and your goals. No templates — every plan is bespoke.</p>
+              <h4>Review</h4>
+              <p>We map your current tools and workflow.</p>
             </div>
           </div>
           <div class="step-item">
             <div class="step-n">02</div>
             <div class="step-content">
-              <h4>Custom Strategy</h4>
-              <p>We design a tailored roadmap — hosting, automation, and software matched exactly to your needs.</p>
+              <h4>Build</h4>
+              <p>We create your website as the central entry point.</p>
             </div>
           </div>
           <div class="step-item">
             <div class="step-n">03</div>
             <div class="step-content">
-              <h4>Build &amp; Launch</h4>
-              <p>We build, migrate existing data, test thoroughly, and launch your new system with confidence.</p>
+              <h4>Connect</h4>
+              <p>We integrate your service app, CRM, and communication tools.</p>
             </div>
           </div>
           <div class="step-item">
             <div class="step-n">04</div>
             <div class="step-content">
-              <h4>Grow &amp; Optimise</h4>
-              <p>We monitor performance, layer in more automation, and keep improving your systems over time.</p>
+              <h4>Automate</h4>
+              <p>We link actions across your system to remove manual work.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-n">05</div>
+            <div class="step-content">
+              <h4>Deploy</h4>
+              <p>You get a fully connected system with a live dashboard.</p>
             </div>
           </div>
         </div>
@@ -970,30 +962,30 @@
         </div>
         <div class="pv-bars">
           <div class="pv-bar-row">
-            <span class="pv-bar-label">GMB Visibility</span>
-            <div class="pv-bar-track"><div class="pv-bar-fill" style="width:84%"></div></div>
-            <span class="pv-bar-pct">84%</span>
+            <span class="pv-bar-label">Integration</span>
+            <div class="pv-bar-track"><div class="pv-bar-fill" style="width:99%"></div></div>
+            <span class="pv-bar-pct">99%</span>
           </div>
           <div class="pv-bar-row">
-            <span class="pv-bar-label">Lead Capture</span>
+            <span class="pv-bar-label">Automation</span>
             <div class="pv-bar-track"><div class="pv-bar-fill" style="width:91%"></div></div>
             <span class="pv-bar-pct">91%</span>
           </div>
           <div class="pv-bar-row">
-            <span class="pv-bar-label">Automation</span>
-            <div class="pv-bar-track"><div class="pv-bar-fill" style="width:78%"></div></div>
-            <span class="pv-bar-pct">78%</span>
+            <span class="pv-bar-label">Manual Tasks</span>
+            <div class="pv-bar-track"><div class="pv-bar-fill" style="width:85%"></div></div>
+            <span class="pv-bar-pct">−85%</span>
           </div>
           <div class="pv-bar-row">
-            <span class="pv-bar-label">Site Uptime</span>
+            <span class="pv-bar-label">Uptime</span>
             <div class="pv-bar-track"><div class="pv-bar-fill" style="width:99%"></div></div>
             <span class="pv-bar-pct">99%</span>
           </div>
         </div>
         <div class="pv-stats">
-          <div class="pv-stat"><div class="v">+42%</div><div class="l">GMB Growth</div></div>
-          <div class="pv-stat"><div class="v">3.2×</div><div class="l">Conversions</div></div>
-          <div class="pv-stat"><div class="v">−60%</div><div class="l">Manual Work</div></div>
+          <div class="pv-stat"><div class="v">−80%</div><div class="l">Manual Work</div></div>
+          <div class="pv-stat"><div class="v">100%</div><div class="l">Connected</div></div>
+          <div class="pv-stat"><div class="v">1</div><div class="l">System</div></div>
         </div>
       </div>
     </div>
@@ -1004,36 +996,43 @@
 <section class="why-sec" id="why">
   <div class="why-head">
     <div class="eyebrow" style="justify-content:center;">Why Syntra</div>
-    <h2 style="color:#fff;">Built for service businesses.<br />Not just any business.</h2>
-    <p class="sec-p">We specialise in one thing — helping service-based businesses grow efficiently online.</p>
+    <h2 style="color:#fff;">Built Around How Your<br />Systems Actually Work</h2>
+    <p class="sec-p">Your systems should work together. We make sure they do.</p>
   </div>
   <div class="why-grid">
     <div class="why-card">
-      <div class="why-card-ico">🎯</div>
+      <div class="why-card-ico">🔗</div>
       <div class="why-card-body">
-        <h4>Niche Focused</h4>
-        <p>We only work with service businesses. That means our solutions are purpose-built for exactly your world — nothing generic.</p>
+        <h4>Integration First</h4>
+        <p>We focus on how everything connects — not just how it looks.</p>
       </div>
     </div>
     <div class="why-card">
       <div class="why-card-ico">⚡</div>
       <div class="why-card-body">
-        <h4>Fast &amp; Responsive</h4>
-        <p>No waiting days for a reply. We move quickly, communicate clearly, and keep you in the loop at every stage.</p>
+        <h4>No Double Handling</h4>
+        <p>Data flows across your tools without re-entry.</p>
       </div>
     </div>
     <div class="why-card">
-      <div class="why-card-ico">🔗</div>
+      <div class="why-card-ico">🔧</div>
       <div class="why-card-body">
-        <h4>All-in-One</h4>
-        <p>One team, one bill, one point of contact. No juggling between agencies, platforms, and vendors.</p>
+        <h4>Works With Your Setup</h4>
+        <p>We connect to what you already use.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-ico">🏗️</div>
+      <div class="why-card-body">
+        <h4>Structured Backend</h4>
+        <p>Clear, organised systems behind your business.</p>
       </div>
     </div>
     <div class="why-card">
       <div class="why-card-ico">📊</div>
       <div class="why-card-body">
-        <h4>Data at Your Fingertips</h4>
-        <p>Every system we build is measured. With Databox dashboards, you see your jobs, revenue, and leads in real time — so you always know exactly how your business is performing.</p>
+        <h4>One View of Everything</h4>
+        <p>All activity in one place — no switching between platforms.</p>
       </div>
     </div>
   </div>
@@ -1055,11 +1054,16 @@
 <section class="cta-sec" id="contact">
   <div class="cta-box">
     <div class="cta-left">
-      <h2>Ready to grow<br />your business?</h2>
-      <p>Book a free discovery call. We'll understand exactly what you need and show you how Syntra can help — no obligation, no hard sell.</p>
+      <h2>Connect Your Systems</h2>
+      <p>Tell us what you're using — we'll show you how to bring it together.</p>
+      <ul style="list-style:none; margin-top:1.25rem; display:flex; flex-direction:column; gap:0.5rem;">
+        <li style="font-size:0.875rem; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:0.5rem;"><span style="color:var(--indigo);">✓</span> No disruption</li>
+        <li style="font-size:0.875rem; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:0.5rem;"><span style="color:var(--indigo);">✓</span> No unnecessary complexity</li>
+        <li style="font-size:0.875rem; color:rgba(255,255,255,0.5); display:flex; align-items:center; gap:0.5rem;"><span style="color:var(--indigo);">✓</span> Fully integrated setup</li>
+      </ul>
     </div>
     <div class="cta-right">
-      <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-grad">Book a Free Call →</a>
+      <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-grad">Book a Demo →</a>
       <a href="tel:0402291132" class="btn-light">📞 0402 291 132</a>
       <span class="cta-note">No commitment required</span>
     </div>
@@ -1076,7 +1080,7 @@
     <li><a href="tel:0402291132">0402 291 132</a></li>
     <li><a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq">Book a Call</a></li>
   </ul>
-  <span class="footer-copy">© 2025 Syntra Software. All rights reserved.</span>
+  <span class="footer-copy">Stop managing tools. Start running a system. · © 2025 Syntra Software.</span>
 </footer>
 
 
