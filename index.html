@@ -43,17 +43,28 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 1.5rem;
       height: 60px;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(0,0,0,0.07);
+      background: transparent;
+      border: 1px solid transparent;
       border-radius: 100px;
+      transition: background 0.4s, border-color 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+
+    nav.nav-scrolled {
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(20px);
+      border-color: rgba(0,0,0,0.07);
       box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     }
+    nav.nav-scrolled .logo { color: var(--dark); }
+    nav.nav-scrolled .nav-links a { color: var(--muted); }
+    nav.nav-scrolled .nav-links a:hover { color: var(--dark); }
 
     .logo {
       font-family: 'Syne', sans-serif;
       font-size: 1.1rem; font-weight: 800;
       letter-spacing: -0.3px;
+      color: #fff;
+      transition: color 0.4s;
     }
     .logo span {
       background: var(--grad);
@@ -64,10 +75,10 @@
     .nav-links { display: flex; gap: 1.75rem; list-style: none; }
     .nav-links a {
       font-size: 0.875rem; font-weight: 500;
-      color: var(--muted);
+      color: rgba(255,255,255,0.8);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--dark); }
+    .nav-links a:hover { color: #fff; }
 
     .nav-cta {
       background: var(--dark);
@@ -179,8 +190,11 @@
 
     .hero-content h1 {
       color: #fff;
-      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
-      text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+      font-size: clamp(1.25rem, 1.6vw, 1.45rem);
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      line-height: 1.4;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
 
     h1 .grad-text {
@@ -1083,6 +1097,19 @@
   <span class="footer-copy">Stop managing tools. Start running a system. · © 2025 Syntra Software.</span>
 </footer>
 
+
+<script>
+// ── NAV SCROLL BEHAVIOUR ──
+(function () {
+  const nav = document.querySelector('nav');
+  const threshold = window.innerHeight * 0.75;
+  function update() {
+    nav.classList.toggle('nav-scrolled', window.scrollY > threshold);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 <script>
 // ── CIRCUIT CANVAS ANIMATION ──
