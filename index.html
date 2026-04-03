@@ -81,40 +81,89 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh;
-      padding: 140px 5vw 80px;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-    }
-
-    /* mesh background */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(91,79,255,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(6,182,212,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 40% at 90% 70%, rgba(139,92,246,0.06) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero-wrap {
+      height: 100vh;
+      width: 100%;
       position: relative;
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center; width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 130% 110% at 50% 50%, transparent 15%, rgba(0,0,0,0.6) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.0) 35%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem 5vw;
+      max-width: 860px;
+      animation: heroFadeUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: heroFadeUp 1s 1.2s ease forwards;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 2.2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.4; transform: scaleY(1) translateY(0); }
+      50%      { opacity: 1;   transform: scaleY(0.65) translateY(4px); }
     }
 
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.6rem;
       font-size: 0.78rem; font-weight: 600;
       letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--indigo);
-      background: rgba(91,79,255,0.07);
-      border: 1px solid rgba(91,79,255,0.15);
+      color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 100px;
       padding: 0.35rem 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(10px);
     }
 
     h1 {
@@ -125,6 +174,12 @@
       letter-spacing: -2px;
       margin-bottom: 1.25rem;
       color: var(--dark);
+    }
+
+    .hero-content h1 {
+      color: #fff;
+      font-size: clamp(3.2rem, 6.5vw, 5.8rem);
+      text-shadow: 0 2px 40px rgba(0,0,0,0.3);
     }
 
     h1 .grad-text {
@@ -139,7 +194,16 @@
       margin-bottom: 2.25rem;
     }
 
+    .hero-content .hero-p {
+      color: rgba(255,255,255,0.75);
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+    }
+
     .hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+    .hero-content .hero-btns { justify-content: center; }
 
     .btn-dark {
       background: var(--dark);
@@ -164,26 +228,42 @@
       border-radius: 100px;
       border: 1.5px solid var(--border);
       display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
     }
     .btn-outline:hover {
       border-color: var(--indigo);
       background: rgba(91,79,255,0.04);
+    }
+    .hero-content .btn-outline {
+      color: #fff;
+      border-color: rgba(255,255,255,0.35);
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.08);
+    }
+    .hero-content .btn-outline:hover {
+      border-color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.15);
     }
 
     .hero-proof {
       margin-top: 2.5rem;
       display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
     }
+    .hero-content .hero-proof { justify-content: center; }
     .proof-item {
       display: flex; align-items: center; gap: 0.4rem;
       font-size: 0.82rem; font-weight: 500; color: var(--muted);
     }
+    .hero-content .proof-item { color: rgba(255,255,255,0.6); }
     .proof-dot {
       width: 18px; height: 18px; border-radius: 50%;
       background: rgba(91,79,255,0.1);
       display: flex; align-items: center; justify-content: center;
       font-size: 0.6rem; color: var(--indigo);
+    }
+    .hero-content .proof-dot {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
     }
 
     /* HERO CARD */
@@ -705,9 +785,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-wrap { grid-template-columns: 1fr; }
-      .hero-card { display: none; }
-      .hero-video-wrap { margin-top: 2rem; }
       .svc-grid { grid-template-columns: 1fr 1fr; }
       .process-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .why-grid { grid-template-columns: 1fr; }
@@ -734,23 +811,6 @@
       z-index: 1;
     }
 
-    /* ── HERO VIDEO ── */
-    .hero-video-wrap {
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.07);
-      border: 1px solid var(--border);
-      position: relative;
-      background: var(--dark);
-    }
-    .hero-video-wrap video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      min-height: 280px;
-      max-height: 500px;
-    }
   </style>
 </head>
 <body>
@@ -771,29 +831,29 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-wrap">
-    <div>
-      <div class="hero-eyebrow">Smart Business Growth Platform</div>
-      <h1>Automate.<br /><span class="grad-text">Integrate.</span><br />Grow.</h1>
-      <p class="hero-p">
-        Syntra Software helps service-based businesses grow through smart websites, Google My Business automation, and seamless service app integrations — all in one place.
-      </p>
-      <div class="hero-btns">
-        <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-dark">Book a Free Consultation →</a>
-        <a href="#services" class="btn-outline">See What We Do</a>
-      </div>
-      <div class="hero-proof">
-        <div class="proof-item"><div class="proof-dot">★</div> 5.0 Google Rating</div>
-        <div class="proof-item"><div class="proof-dot">✓</div> Website + App Integration</div>
-        <div class="proof-item"><div class="proof-dot">↗</div> Service Businesses Only</div>
-      </div>
+  <video class="hero-bg-video" autoplay muted loop playsinline>
+    <source src="Video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Smart Business Growth Platform</div>
+    <h1>Automate.<br /><span class="grad-text">Integrate.</span><br />Grow.</h1>
+    <p class="hero-p">
+      Syntra Software helps service-based businesses grow through smart websites, Google My Business automation, and seamless service app integrations — all in one place.
+    </p>
+    <div class="hero-btns">
+      <a href="https://api.leadconnectorhq.com/widget/booking/cOXuc3xekXcBEYV2fGVq" class="btn-dark">Book a Free Consultation →</a>
+      <a href="#services" class="btn-outline">See What We Do</a>
     </div>
-
-    <div class="hero-video-wrap">
-      <video autoplay muted loop playsinline>
-        <source src="Video.mp4" type="video/mp4">
-      </video>
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-dot">★</div> 5.0 Google Rating</div>
+      <div class="proof-item"><div class="proof-dot">✓</div> Website + App Integration</div>
+      <div class="proof-item"><div class="proof-dot">↗</div> Service Businesses Only</div>
     </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
   </div>
 </section>
 
