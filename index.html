@@ -707,6 +707,7 @@
     @media (max-width: 900px) {
       .hero-wrap { grid-template-columns: 1fr; }
       .hero-card { display: none; }
+      .hero-video-wrap { margin-top: 2rem; }
       .svc-grid { grid-template-columns: 1fr 1fr; }
       .process-wrap { grid-template-columns: 1fr; gap: 3rem; }
       .why-grid { grid-template-columns: 1fr; }
@@ -721,10 +722,40 @@
       .cta-box { padding: 2.5rem 1.75rem; }
       nav { top: 0.75rem; }
       h1 { letter-spacing: -1.2px; }
+      #circuit-canvas { display: none; }
+    }
+
+    /* ── CIRCUIT CANVAS ── */
+    #circuit-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── HERO VIDEO ── */
+    .hero-video-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.07);
+      border: 1px solid var(--border);
+      position: relative;
+      background: var(--dark);
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      min-height: 280px;
+      max-height: 500px;
     }
   </style>
 </head>
 <body>
+
+<canvas id="circuit-canvas"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -758,62 +789,10 @@
       </div>
     </div>
 
-    <div class="hero-card">
-      <div class="hc-top">
-        <div class="hc-top-left">
-          <span class="hc-top-title">Client Business Overview</span>
-          <div class="hc-live-pill">
-            <span class="hc-live-dot"></span>Live
-          </div>
-        </div>
-        <div class="hc-dot"><span></span><span></span><span></span></div>
-      </div>
-      <div class="hc-body">
-        <div class="hc-rating-row">
-          <div class="hc-rating-stars">★★★★★</div>
-          <div class="hc-rating-label">5.0 on Google · 3 reviews</div>
-        </div>
-        <div class="hc-metric-row">
-          <div class="hc-metric">
-            <div class="val">+42%</div>
-            <div class="lbl">GMB Visibility</div>
-          </div>
-          <div class="hc-metric">
-            <div class="val">3.2×</div>
-            <div class="lbl">Leads Converted</div>
-          </div>
-          <div class="hc-metric">
-            <div class="val">99.9%</div>
-            <div class="lbl">Site Uptime</div>
-          </div>
-          <div class="hc-metric">
-            <div class="val">−60%</div>
-            <div class="lbl">Manual Work</div>
-          </div>
-        </div>
-        <div class="hc-list">
-          <div class="hc-row">
-            <div class="hc-row-left"><span>🌐</span> Website &amp; Hosting</div>
-            <span class="hc-status s-active">Active</span>
-          </div>
-          <div class="hc-row">
-            <div class="hc-row-left"><span>📍</span> GMB Automation</div>
-            <span class="hc-status s-active">Running</span>
-          </div>
-          <div class="hc-row">
-            <div class="hc-row-left"><span>🔗</span> App Integration</div>
-            <span class="hc-status s-live">Connected</span>
-          </div>
-          <div class="hc-row">
-            <div class="hc-row-left"><span>📈</span> Growth Automation</div>
-            <span class="hc-status s-live">Live</span>
-          </div>
-          <div class="hc-row">
-            <div class="hc-row-left"><span>📊</span> Databox Dashboard</div>
-            <span class="hc-status s-sync">Synced</span>
-          </div>
-        </div>
-      </div>
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="Video.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -1221,6 +1200,185 @@
   };
 
   document.addEventListener('DOMContentLoaded', loadGoogleReviews);
+</script>
+
+<script>
+// ── CIRCUIT CANVAS ANIMATION ──
+(function () {
+  const canvas = document.getElementById('circuit-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const PALETTE = [
+    [91, 79, 255],   // indigo
+    [139, 92, 246],  // violet
+    [6, 182, 212]    // cyan
+  ];
+
+  let W, H, docH, sideW;
+  let segments = [], nodes = [], pulses = [];
+  let animId;
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function setSize() {
+    W    = canvas.width  = window.innerWidth;
+    H    = canvas.height = window.innerHeight;
+    docH = Math.max(document.body.scrollHeight, 5000);
+    sideW = Math.max(45, Math.min(185, (W - 1100) / 2 - 10));
+  }
+
+  function buildSide(left) {
+    const segs = [], nds = [];
+    const edge = left ? 0 : W;
+    const dir  = left ? 1 : -1;
+
+    for (let b = 0; b < 2; b++) {
+      let x = edge + dir * rand(14, sideW * 0.75);
+      let y = rand(100, 280) + b * rand(100, 250);
+      nds.push({ x, y });
+
+      for (let i = 0; i < 120 && y < docH + 300; i++) {
+        const col = PALETTE[Math.floor(Math.random() * 3)];
+        const r   = Math.random();
+
+        if (r < 0.48) {
+          const len = rand(22, 115);
+          segs.push({ x1: x, y1: y, x2: x, y2: y + len, col });
+          y += len;
+
+        } else if (r < 0.78) {
+          const nx  = edge + dir * rand(10, sideW);
+          const ty  = y + rand(8, 28);
+          const dl  = rand(18, 85);
+          segs.push({ x1: x,  y1: y,  x2: x,  y2: ty,      col });
+          segs.push({ x1: x,  y1: ty, x2: nx, y2: ty,      col });
+          segs.push({ x1: nx, y1: ty, x2: nx, y2: ty + dl, col });
+          nds.push({ x, y: ty });
+          x = nx; y = ty + dl;
+
+        } else {
+          const bx = edge + dir * rand(6, sideW * 0.5);
+          const cy = y + rand(5, 18);
+          segs.push({ x1: x,  y1: y,  x2: x,  y2: cy, col });
+          segs.push({ x1: x,  y1: cy, x2: bx, y2: cy, col });
+          nds.push({ x, y: cy });
+          const dl = rand(14, 58);
+          segs.push({ x1: x,  y1: cy, x2: x,  y2: cy + dl, col });
+          y = cy + dl;
+        }
+
+        nds.push({ x, y });
+      }
+    }
+    return { segs, nds };
+  }
+
+  function generate() {
+    if (animId) cancelAnimationFrame(animId);
+    segments = []; nodes = []; pulses = [];
+
+    if (W < 900) { canvas.style.display = 'none'; return; }
+    canvas.style.display = 'block';
+
+    const L = buildSide(true);
+    const R = buildSide(false);
+    segments = [...L.segs, ...R.segs];
+    nodes    = [...L.nds,  ...R.nds];
+
+    for (let i = 0; i < 10; i++) seedPulse();
+    render();
+  }
+
+  function seedPulse() {
+    if (!segments.length) return;
+    pulses.push({
+      idx:   Math.floor(Math.random() * segments.length),
+      t:     Math.random(),
+      speed: rand(0.003, 0.008),
+      col:   PALETTE[Math.floor(Math.random() * 3)]
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+
+    const sy    = window.scrollY;
+    const ahead = sy + H * 1.2;
+    const fadeZ = H * 0.28;
+
+    ctx.save();
+    ctx.translate(0, -sy);
+
+    for (const s of segments) {
+      if (s.y2 < sy - 50 || s.y1 > ahead) continue;
+      const alpha = Math.min(1, (ahead - s.y1) / fadeZ) * 0.38;
+      const [r, g, b] = s.col;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = `rgb(${r},${g},${b})`;
+      ctx.lineWidth   = 1.25;
+      ctx.shadowColor = `rgba(${r},${g},${b},0.55)`;
+      ctx.shadowBlur  = 5;
+      ctx.beginPath();
+      ctx.moveTo(s.x1, s.y1);
+      ctx.lineTo(s.x2, s.y2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    for (const n of nodes) {
+      if (n.y < sy - 20 || n.y > ahead) continue;
+      const alpha = Math.min(1, (ahead - n.y) / fadeZ) * 0.65;
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle   = 'rgba(91,79,255,0.95)';
+      ctx.shadowColor = 'rgba(91,79,255,0.75)';
+      ctx.shadowBlur  = 9;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    for (const p of pulses) {
+      const s = segments[p.idx];
+      if (s) {
+        const px = s.x1 + (s.x2 - s.x1) * p.t;
+        const py = s.y1 + (s.y2 - s.y1) * p.t;
+        if (py >= sy - 30 && py <= ahead) {
+          const [r, g, b] = p.col;
+          ctx.save();
+          ctx.fillStyle   = `rgb(${r},${g},${b})`;
+          ctx.shadowColor = `rgba(${r},${g},${b},0.95)`;
+          ctx.shadowBlur  = 14;
+          ctx.beginPath();
+          ctx.arc(px, py, 2.8, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+      p.t += p.speed;
+      if (p.t > 1) {
+        p.t   = 0;
+        p.idx = Math.floor(Math.random() * segments.length);
+        p.col = PALETTE[Math.floor(Math.random() * 3)];
+      }
+    }
+
+    ctx.restore();
+    animId = requestAnimationFrame(render);
+  }
+
+  setSize();
+  generate();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { setSize(); generate(); }, 220);
+  });
+})();
 </script>
 
 </body>
